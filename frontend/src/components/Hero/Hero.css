@@ -1,0 +1,43 @@
+.hero {
+  text-align: center;
+  padding: 4rem 1rem 2.5rem 1rem;
+  background: #f6f9ff;
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.1rem;
+}
+
+.hero-desc {
+  color: #555;
+  font-size: 1.12rem;
+  margin-bottom: 2.2rem;
+}
+
+.her-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.hero-btn {
+  padding: 0.7rem 1.8rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.hero-btn.primary {
+  background: #FF6600;
+  color: white;
+}
+
+.hero-btn.primary:hover {
+  background: #E65C00;
+}
