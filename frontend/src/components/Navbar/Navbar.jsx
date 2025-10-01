@@ -2,11 +2,11 @@ import React from "react";
 import "./Navbar.css"
 
 
-const Navbar = () => {
+const Navbar = ({showButton = true, title ="Mini AI App Builder"}) => {
   return (
     <nav className="navbar">
-      <div className="navbar-title">Mini AI App Builder</div>
-      <button className="navbar-btn">Get Started</button>
+      <div className="navbar-title">{title}</div>
+      {showButton && <button className="navbar-btn">Get Started</button>}
     </nav>
   );
 }

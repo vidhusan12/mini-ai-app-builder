@@ -9,7 +9,7 @@ const Hero = () => {
         Quickly generate powerful AI apps by describing your idea in just a few words. Give it a try and see how easy app creation can be!
       </p>
       <div className="hero-btns">
-        <button className='hero-btn primary'>Get Started</button>
+        <button className='hero-btn primary'>Start Building</button>
       </div>
     </section>
   )

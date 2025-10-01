@@ -1,0 +1,137 @@
+.build-ai-app-container {
+  min-height: 100vh;
+  background: #f6f9ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.chatbox, .resultbox {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(80,120,200,0.07);
+  padding: 1.5rem;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox {
+  flex: 2;
+  width: 0;
+}
+
+.resultbox {
+  flex: 1.2;
+  width: 0;
+  margin-left: 0.5rem;
+}
+
+.result-tabs {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+.result-tabs button {
+  background: #e6f0ff;
+  color: #366bcf;
+  border: none;
+  padding: 0.55em 1.2em;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.result-tabs button.active,
+.result-tabs button:hover {
+  background: #366bcf;
+  color: #fff;
+}
+
+.result-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-block {
+  background: #222;
+  color: #fff;
+  padding: 1em;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  min-height: 250px;
+}
+
+.preview-block {
+  background: #fafcff;
+  border: 1px solid #e6f0ff;
+  border-radius: 7px;
+  min-height: 250px;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.msg {
+  margin-bottom: 0.6rem;
+  padding: 0.6em 0.7em;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.msg.ai {
+  background: #e6f0ff;
+  color: #366bcf;
+  align-self: flex-start;
+}
+
+.msg.user {
+  background: #f0e6ff;
+  color: #7d4bff;
+  align-self: flex-end;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 0.6em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.input-row button {
+  background: #366bcf;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6em 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+}
