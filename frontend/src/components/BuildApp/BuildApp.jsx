@@ -4,7 +4,8 @@ import "./BuildApp.css";
 import axios from "axios";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { LiveProvider, LivePreview, LiveError } from "react-live";
+import { cleanCode } from "./codeHelpers";
+import { renderPreview } from "./previewHelpers";
 
 const BuildApp = () => {
   const [messages, setMessages] = useState([
@@ -16,6 +17,8 @@ const BuildApp = () => {
   const [generatedCode, setGeneratedCode] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const cleanedCode = cleanCode(generatedCode);
+
   const handleSend = async () => {
     if (!input.trim()) return;
     setMessages(msgs => [...msgs, { role: "user", text: input }]);
@@ -24,29 +27,30 @@ const BuildApp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/requirements", // Change to your deployed backend URL if needed
+        "http://localhost:5050/api/requirements",
         { description: input }
       );
-      const { appName, entities, roles, features, generatedCode } = response.data;
-      setRequirements({ appName, entities, roles, features });
-      setGeneratedCode(generatedCode);
+      // Assume response.data.requirements is the requirements object
+      // and response.data.generatedCode is the raw code
+      setRequirements(response.data.requirements || null);
+      setGeneratedCode(response.data.generatedCode || "");
       setMessages(msgs => [
         ...msgs,
-        { role: "ai", text: "Here are your requirements and generated code!" }
+        { role: "ai", text: "Here is your generated code!" }
       ]);
     } catch (err) {
       setMessages(msgs => [
         ...msgs,
         { role: "ai", text: "Sorry, something went wrong generating code." }
       ]);
-      setRequirements(null);
       setGeneratedCode("");
+      setRequirements(null);
     }
     setLoading(false);
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(generatedCode);
+    navigator.clipboard.writeText(cleanedCode);
     alert("Code copied!");
   };
 
@@ -86,28 +90,14 @@ const BuildApp = () => {
             <button onClick={handleCopy}>Copy</button>
           </div>
           <div className="result-content">
-            {requirements && (
-              <div className="requirements-display">
-                <h4>Extracted Requirements:</h4>
-                <ul>
-                  <li><strong>App Name:</strong> {requirements.appName}</li>
-                  <li><strong>Entities:</strong> {requirements.entities?.join(", ")}</li>
-                  <li><strong>Roles:</strong> {requirements.roles?.join(", ")}</li>
-                  <li><strong>Features:</strong> {requirements.features?.join(", ")}</li>
-                </ul>
-              </div>
-            )}
             {activeTab === "code" && (
               <SyntaxHighlighter language="jsx" style={darcula} className="code-block">
-                {generatedCode || "Code will appear here."}
+                {cleanedCode || "Code will appear here."}
               </SyntaxHighlighter>
             )}
             {activeTab === "preview" && (
-              generatedCode ? (
-                <LiveProvider code={generatedCode} noInline>
-                  <LivePreview className="preview-block" />
-                  <LiveError />
-                </LiveProvider>
+              requirements ? (
+                <div className="preview-block">{renderPreview(requirements)}</div>
               ) : (
                 <div className="preview-block">Preview will appear here.</div>
               )

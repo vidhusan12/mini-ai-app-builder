@@ -7,13 +7,16 @@ const ai = new GoogleGenAI({
 export const getRequirements = async (req, res) => {
   try {
     const { description } = req.body;
+    // Use a prompt that directs Gemini to ONLY return the code!
+    const prompt = `Write only the complete React JSX code for this request, with no explanation: ${description}`;
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: [{ text: `Generate software requirements for: ${description}` }]
+      contents: [{ text: prompt }]
     });
-    res.json({ requirements: response.text });
+    // Send the code back to the frontend
+    res.json({ generatedCode: response.text });
   } catch (error) {
     console.error("Gemini error:", error);
-    res.status(500).json({ error: "Failed to generate requirements.", details: error.message });
+    res.status(500).json({ error: "Failed to generate code.", details: error.message });
   }
 };
