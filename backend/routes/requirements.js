@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const { getRequirements } = require('../controllers/requirementsController');
+import { Router } from "express";
+import { getRequirements } from "../controllers/requirementsController.js";
 
-// POST /api/requirements
-router.post('/', getRequirements);
+const router = Router();
+router.post("/", getRequirements);
 
-module.exports = router;
+export default router;
