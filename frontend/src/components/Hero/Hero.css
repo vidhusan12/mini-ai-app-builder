@@ -2,7 +2,12 @@
   text-align: center;
   padding: 4rem 1rem 2.5rem 1rem;
   background: #f6f9ff;
+  min-height: 40vh; /* or 70vh for an even larger hero section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center content */
 }
+
 
 .hero-title {
   font-size: 2.4rem;
@@ -40,4 +45,11 @@
 
 .hero-btn.primary:hover {
   background: #E65C00;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 35vh;
+    padding: 2.5rem 0.5rem 1.5rem 0.5rem;
+  }
 }

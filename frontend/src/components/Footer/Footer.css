@@ -1,2 +1,16 @@
 .footer {
+  background: #f6f9ff;
+  text-align: center;
+  padding: 3.5rem 1rem 2.3rem 1rem;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #366bcf;
+  margin-top: 2.4rem;
+  letter-spacing: 1px;
 }
