@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./BuildApp.css";
 import { GoogleGenAI } from "@google/genai";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 
 const BuildApp = () => {
   const apiKey = process.env.REACT_APP_GEMINI_KEY;
@@ -23,7 +26,7 @@ const BuildApp = () => {
 
     try {
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash", 
+        model: "gemini-2.5-flash",
         contents: `Write only the React code for this UI component:\n${input}`,
       });
       const code = response.text;
@@ -88,15 +91,19 @@ const BuildApp = () => {
           </div>
           <div className="result-content">
             {activeTab === "code" && (
-              <pre className="code-block">
+              <SyntaxHighlighter language="jsx" style={darcula} className="code-block">
                 {generatedCode || "Code will appear here."}
-              </pre>
+              </SyntaxHighlighter>
             )}
             {activeTab === "preview" && (
-              <div
-                className="preview-block"
-                dangerouslySetInnerHTML={{ __html: generatedCode }}
-              />
+              generatedCode ? (
+                <LiveProvider code={generatedCode} noInline>
+                  <LivePreview className="preview-block" />
+                  <LiveError />
+                </LiveProvider>
+              ) : (
+                <div className="preview-block">Preview will appear here.</div>
+              )
             )}
           </div>
         </div>

@@ -16,10 +16,11 @@
   max-width: 1100px;
 }
 
-.chatbox, .resultbox {
+.chatbox,
+.resultbox {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(80,120,200,0.07);
+  box-shadow: 0 2px 12px rgba(80, 120, 200, 0.07);
   padding: 1.5rem;
   min-height: 500px;
   display: flex;
@@ -67,25 +68,22 @@
 }
 
 .code-block {
-  background: #222;
-  color: #fff;
-  padding: 1em;
-  border-radius: 7px;
-  font-size: 0.97rem;
-  white-space: pre-wrap;
-  word-break: break-all;
-  min-height: 250px;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'monospace';
+  background: #282c34;
+  color: #f8f8f2;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .preview-block {
-  background: #fafcff;
-  border: 1px solid #e6f0ff;
-  border-radius: 7px;
-  min-height: 250px;
-  padding: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  min-height: 100px;
+  margin-top: 8px;
 }
 
 .messages {
